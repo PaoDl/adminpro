@@ -1,0 +1,81 @@
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()"
+autocomplete="off">
+  <div className="mb-4">
+    <div class="form-control w-full mt-4">
+      <label Name="label">Nombres</label>
+      <input
+        class="input input-bordered w-full"
+        type="name"
+        formControlName="name"
+      />
+      <label class="label" *ngIf="registerForm.controls['name'].touched">
+      <span *ngIf="!registerForm.controls['name'].valid" class="label-text-alt text-error">Campo incorrecto</span>
+      </label>
+    </div>
+    
+    <div class="form-control w-full mt-4">
+      <label Name="label">Apellidos</label>
+      <input
+        class="input input-bordered w-full"
+        type="lastname"
+        formControlName="lastname"
+      />
+      <label class="label" *ngIf="registerForm.controls['lastname'].touched">
+        <span *ngIf="!registerForm.controls['lastname'].valid" class="label-text-alt text-error">Campo incorrecto</span>
+      </label>
+    </div>
+    
+    <div class="form-control w-full mt-4">
+      <label Name="label">Correo Electrónico</label>
+      <input
+        class="input input-bordered w-full"
+        type="email"
+        id="email" 
+        formControlName="email"
+      />
+      <label class="label" *ngIf="registerForm.controls['email'].touched">
+        <span *ngIf="!registerForm.controls['email'].valid" class="label-text-alt text-error">Campo incorrecto</span>
+      </label>
+    </div>
+    <div class="form-control w-full mt-4">
+      <label name="label">Contraseña</label>
+      <div class="relative">
+        <input class="input input-bordered w-full" 
+        [type]="showPassword() ? 'text' : 'password'" 
+        id="password"
+        formControlName="password"
+     />
+        <shared-eye-btn/>
+      </div>
+        <label class="label" *ngIf="registerForm.controls['password'].touched">
+          <span *ngIf="!registerForm.controls['password'].valid" class="label-text-alt text-error">Campo incorrecto</span>
+        </label>
+
+        <div class="form-control w-full mt-4">
+          <label Name="label">Repetir contraseña</label>
+          <div class="relative">
+          <input class="input input-bordered w-full" 
+            type="repetpassword"
+            id="repetpassword"
+            formControlName="repetpassword" />
+            <label class="label" *ngIf="registerForm.controls['repetpassword'].touched">
+              <span *ngIf="!registerForm.controls['repetpassword'].valid" class="label-text-alt text-error">
+                Campo incorrecto</span>
+            </label>
+          </div>
+        
+        </div>
+        
+    </div>
+  </div>
+  <shared-btn [type]="'submit'"
+  [btnDisabled]="!registerForm.valid">
+  Registarse</shared-btn>
+  <div class="text-center mt-4">
+    ¿Ya tiene una cuenta? <span
+      class="inline-block hover:text-primary hover:underline hover:cursor-pointer transition duration-200 pb-5"
+      routerLink="/"
+      >Entrar</span
+    >
+  </div>
+</form>

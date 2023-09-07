@@ -1,0 +1,9 @@
+{
+  "exportall.config.folderListener": [
+    "/src/app/features/auth"
+  ],
+  "exportall.config.relExclusion": [
+    "/src/app/features/public/pages/register/components",
+    "/src/app/core/colors.dictionary.ts"
+  ]
+}
