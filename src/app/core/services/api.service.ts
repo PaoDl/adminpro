@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
 
+import { MyResponse } from '../models';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,26 +18,24 @@ export class ApiService {
     this.apiUrl = environment.api; 
   }
   //Metodos Globales para las peticiones HTTP(GET POST PATCH DELETE )
-  getAll(path: string):
-    Observable<object>{
-  return this.httpClient.get<object>(`${this.apiUrl}/${path}`);
+  getAll<T>(path: string): Observable<MyResponse<T>> {
+    return this.httpClient.get<MyResponse<T>>(`${this.apiUrl}/${path}`);
   }
-  getById(path: string, id: number | string):Observable<object> {
-    return this.httpClient.get(`${this.apiUrl}/${path}/${id}`);
+
+  getById<T>(path: string, id: number | string): Observable<MyResponse<T>> {
+    return this.httpClient.get<MyResponse<T>>(`${this.apiUrl}/${path}/${id}`);
   }
   //post creacion
-  store(path: string, body: object):
-    Observable<object> {
-    return this.httpClient.post(`${this.apiUrl}/${path}`, body)
+  store<T>(path: string, body: object): Observable<MyResponse<T>> {
+    return this.httpClient.post<MyResponse<T>>(`${this.apiUrl}/${path}`,body);
   }
-  update(path: string, body: object, id: number | string):
-    Observable<object> { 
-    return this.httpClient.patch(`${this.apiUrl}/${path}/${id}`, body);
-  
+
+  update<T>(path: string, body: object, id: number | string): Observable<MyResponse<T>> {
+    return this.httpClient.patch<MyResponse<T>>(`${this.apiUrl}/${path}/${id}`,body);
   }
-  detele(path: string, id: number | string):
-    Observable<object>{
-    return this.httpClient.delete(`${this.apiUrl}/${path}/${id}`);
-  } 
+
+  delete<T>(path: string, id: number | string): Observable<MyResponse<T>> {
+    return this.httpClient.delete<MyResponse<T>>(`${this.apiUrl}/${path}/${id}`);
+  }
 
 }

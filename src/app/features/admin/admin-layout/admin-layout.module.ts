@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminLayoutRoutingModule } from './admin-layout-routing.module';
@@ -10,6 +10,7 @@ import {
   BreadcrumsComponent,
   SidebarComponent
 } from './components';
+
 
 @NgModule({
   declarations: [
@@ -24,4 +25,8 @@ import {
     AdminLayoutRoutingModule
   ]
 })
-export class AdminLayoutModule { }
+export class AdminLayoutModule {
+  
+ }
+
+ 

@@ -1,4 +1,3 @@
-export * from './enum';
+export * from './guards';
 export * from './models';
 export * from './services';
-/*hola*/
