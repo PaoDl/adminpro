@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { isNotAuthenticatedGuard, isAuthenticatedGuard } from '@core/guards';
+import { privateGuard, publicGuard } from './core';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [isNotAuthenticatedGuard],
+    canActivate: [publicGuard],
     loadChildren: () => import('@features/public').then(m => m.PublicModule),
   },
   {
     path: 'dashboard',
-    canActivate: [isAuthenticatedGuard],
+    canActivate: [privateGuard],
     loadChildren: () => import('@features/admin').then(m => m.AdminModule),
   },
   {
     path: '404',
     loadComponent: () => import('@shared/pages').then(c => c.NotFoundComponent),
   },
+  
   {
     path: '**',
     redirectTo: '404'
@@ -27,7 +28,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy:PreloadAllModules
+    preloadingStrategy: PreloadAllModules
   })],
   exports: [RouterModule],
 })

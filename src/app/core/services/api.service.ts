@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
 
@@ -18,8 +18,8 @@ export class ApiService {
     this.apiUrl = environment.api; 
   }
   //Metodos Globales para las peticiones HTTP(GET POST PATCH DELETE )
-  getAll<T>(path: string): Observable<MyResponse<T>> {
-    return this.httpClient.get<MyResponse<T>>(`${this.apiUrl}/${path}`);
+  getAll<T>(path: string, headers?: HttpHeaders): Observable<MyResponse<T>> {
+    return this.httpClient.get<MyResponse<T>>(`${this.apiUrl}/${path}`, { headers });
   }
 
   getById<T>(path: string, id: number | string): Observable<MyResponse<T>> {

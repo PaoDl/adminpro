@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 
 import { AuthService } from '@features/public';
 
-export const isNotAuthenticatedGuard: CanActivateFn = () => {
+export const publicGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
   if (authService.authStatus() === 'authenticated') {
