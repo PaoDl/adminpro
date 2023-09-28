@@ -1,7 +1,7 @@
 export interface RegisterForm {
-    name: string;
-    lastname: string;
+    firt_name: string;
+    last_name: string;
     email: string;
     password: string;
-    repetpassword: string;
+    confirm_password: string;
 }

@@ -19,8 +19,7 @@ export class LoginFormComponent {
   private destroyRef = inject(DestroyRef);
   private toastService = inject(ToastService);
 
-  public showPassword = computed<boolean>(this.eyeBtnService.showEye);
-
+  public showPassword = this.eyeBtnService.showEye;
   public loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
@@ -34,8 +33,13 @@ export class LoginFormComponent {
         .subscribe({
           next: () => this.router.navigateByUrl('/dashboard'),
           error: (message) => {
-            console.log(message)
-            this.toastService.show('error',message,faCircleXmark);
+            console.log(message);
+            this.toastService.show({
+              color: 'error',
+              message,
+              icon: faCircleXmark,
+              duration: 15000,
+            });
           }
         });
     }

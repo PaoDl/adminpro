@@ -1,30 +1,61 @@
-<form>
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()" autocomplete="off">
   <div class="mb-4">
     <div class="form-control w-full mt-4">
       <label Name="label">Nombres</label>
-      <input class="input input-bordered w-full" type="text" />
+      <input class="input input-bordered w-full" type="text" id="first_name" formControlName="first_name" />
+      <label *ngIf="registerForm.controls['first_name'].touched">
+        <span class="label-text-alt" customLabel [errors]="registerForm.get('first_name')?.errors"
+          [color]="'text-error'">
+        </span>
+      </label>
     </div>
     <div class="form-control w-full mt-4">
       <label Name="label">Apellidos</label>
-      <input class="input input-bordered w-full" type="text" />
+      <input class="input input-bordered w-full" type="text" id="last_name" formControlName="last_name" />
+      <label *ngIf="registerForm.controls['last_name'].touched">
+        <span class="label-text-alt" customLabel [errors]="registerForm.get('last_name')?.errors"
+          [color]="'text-error'">
+        </span>
+      </label>
     </div>
     <div class="form-control w-full mt-4">
       <label Name="label">Correo Electrónico</label>
-      <input class="input input-bordered w-full" type="text" />
+      <input class="input input-bordered w-full" type="email" id="email" formControlName="email" />
+      <label *ngIf="registerForm.controls['email'].touched">
+        <span class="label-text-alt" customLabel [errors]="registerForm.get('email')?.errors" [color]="'text-error'">
+        </span>
+      </label>
     </div>
     <div class="form-control w-full mt-4">
       <label Name="label">Contraseña</label>
       <div class="relative">
-        <input class="input input-bordered w-full" [type]="showPassword() ? 'text' : 'password'" />
+        <input class="input input-bordered w-full" [type]="showPassword() ? 'text' : 'password'" id="password"
+          formControlName="password" />
         <shared-eye-btn />
       </div>
+      <label *ngIf="registerForm.controls['password'].touched">
+        <span class="label-text-alt" customLabel [errors]="registerForm.get('password')?.errors" [color]="'text-error'">
+        </span>
+      </label>
     </div>
     <div class="form-control w-full mt-4">
       <label Name="label">Repetir contraseña</label>
-      <input class="input input-bordered w-full" type="password" />
+      <input class="input input-bordered w-full" type="password" id="confirm_password"
+        formControlName="confirm_password" />
+      <label *ngIf="registerForm.controls['confirm_password'].touched">
+        <span class="label-text-alt" customLabel [errors]="registerForm.get('confirm_password')?.errors"
+          [color]="'text-error'">
+        </span>
+        <span class="label-text-alt text-error" customLabel *ngIf="
+            registerForm.hasError('mismatch') &&
+            registerForm.get('confirm_password')?.value !== ''
+          ">
+          Las contraseñas no son iguales.
+        </span>
+      </label>
     </div>
   </div>
-  <shared-btn [type]="'submit'">Registrarse</shared-btn>
+  <shared-btn [type]="'submit'" [btnDisabled]="!registerForm.valid">Registrarse</shared-btn>
   <div class="text-center mt-4">
     ¿Ya tiene una cuenta?
     <span class="inline-block hover:text-primary hover:underline hover:cursor-pointer transition duration-200 pb-5"

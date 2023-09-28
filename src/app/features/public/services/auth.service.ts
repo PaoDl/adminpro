@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 
 import { ApiService, LocalStorageService } from '@core/services';
-import { LoginForm, LoginResponse, RegisterForm, User , AuthStatus, CheckTokenResponse} from '../models';
+import { LoginForm, LoginResponse, RegisterForm, User , AuthStatus, CheckTokenResponse, RegisterResponse} from '../models';
 import { HttpHeaders } from '@angular/common/http';
 
 //inyecciones
@@ -37,7 +37,13 @@ export class AuthService {
         catchError((error) => throwError(() => error.error.message))
       );
   }
-
+register(registerForm: RegisterForm) {
+    const {confirm_password, ...registerBody}= registerForm;
+    return this.apiService
+      .store<RegisterResponse>('auth/register', registerBody)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
+}
+  
   checkAuthStatus(): Observable<boolean> {
     const token = this.localStorageService.getItem('token');
     
@@ -59,10 +65,7 @@ export class AuthService {
       )
   }
 
-  sendRegister(registerForm: RegisterForm) {
-    
-    console.log(registerForm);
-  }
+  
   //metodos publicos
   
   
