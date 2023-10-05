@@ -40,10 +40,14 @@
     </div>
     <div class="form-control w-full mt-4">
       <label Name="label">Repetir contraseña</label>
-      <input class="input input-bordered w-full" type="password" id="confirm_password"
-        formControlName="confirm_password" />
+      <input class="input input-bordered w-full" 
+        type="password" 
+        id="confirm_password"
+        formControlName="confirm_password"
+         />
       <label *ngIf="registerForm.controls['confirm_password'].touched">
-        <span class="label-text-alt" customLabel [errors]="registerForm.get('confirm_password')?.errors"
+        <span class="label-text-alt" customLabel 
+          [errors]="registerForm.get('confirm_password')?.errors"
           [color]="'text-error'">
         </span>
         <span class="label-text-alt text-error" customLabel *ngIf="

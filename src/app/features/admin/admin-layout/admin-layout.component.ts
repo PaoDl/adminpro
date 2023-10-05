@@ -12,9 +12,6 @@ export class AdminLayoutComponent {
  
   public user = computed(() => this.authService.CurrentUser());
 
-  onLogout():void{
-    this.authService.logout();
-   
-    };
+  
 
 }

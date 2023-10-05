@@ -1,11 +1,6 @@
-<div class="toast toast-end" *ngIf="isToastVisible()">
+<div class="toast toast-end" *ngIf="isToastVisible()" [ngClass]="toastClass">
   <div class="alert" [ngClass]="styles">
     <fa-icon [icon]="toastData()!.icon" />
-    <span>{{ toastData()?.message }}</span>
-    <div>
-      <shared-circle-btn [color]="'accent'" [size]="'xs'" (click)="hideToast()">
-        <fa-icon [icon]="faX()" />
-      </shared-circle-btn>
-    </div>
+    <span>{{ toastData()!.message }}</span>
   </div>
 </div>

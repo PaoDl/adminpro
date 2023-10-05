@@ -38,7 +38,7 @@ export class LoginFormComponent {
               color: 'error',
               message,
               icon: faCircleXmark,
-              duration: 15000,
+              duration: 4000,
             });
           }
         });

@@ -78,7 +78,7 @@ export class CustomLabelDirective {
       
           '/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/':
           message =
-            'El campo debe tener al menos una mayúscula, una minúscula, un número y un carácter especial';
+            'El campo debe tener al menos una mayúscula, una minúscula, un número y un carácter especial @ # $ % ^ & + = ! ';
           break;
 
         default:
