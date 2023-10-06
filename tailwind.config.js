@@ -10,6 +10,17 @@ module.exports = {
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     themes: [{
+      myDarkTheme: {
+        "primary": "#797F7A",          
+        "secondary": "#6A896E",          
+        "accent": "#CF780A",          
+        "neutral": "#47546D",          
+        "base-100": "#4E6455",          
+        "info": "#3abff8",          
+        "success": "#94CC5D",          
+        "warning": "#F3C963",          
+        "error": "#D65151",
+      },
       myLigthTheme: {
         "primary": "#C7D4CE",         
         "secondary": "#d926a9",          
@@ -20,20 +31,9 @@ module.exports = {
         "success": "#94CC5D",          
         "warning": "#F3C963",          
         "error": "#D65151",
-      },
-      myDarkTheme: {
-        "primary": "#8290A1",          
-        "secondary": "#9B85B6",          
-        "accent": "#547594",          
-        "neutral": "#488BA3",          
-        "base-100": "#65979C",          
-        "info": "#3abff8",          
-        "success": "#94CC5D",          
-        "warning": "#F3C963",          
-        "error": "#D65151",
-      }
+      }      
 
     }],
-    darktheme: "myLigthTheme",
+    darktheme: "myDarkTheme",
   },
 }
