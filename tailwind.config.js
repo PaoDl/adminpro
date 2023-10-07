@@ -13,7 +13,7 @@ module.exports = {
       myDarkTheme: {
         "primary": "#797F7A",          
         "secondary": "#6A896E",          
-        "accent": "#CF780A",          
+        "accent": "#7E0202",          
         "neutral": "#47546D",          
         "base-100": "#4E705A",          
         "info": "#3abff8",          

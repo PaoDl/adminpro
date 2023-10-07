@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SubtitleComponent } from '../subtitle/subtitle.component';
 
 @Component({
   selector: 'shared-title-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule , SubtitleComponent],
   templateUrl: './title-card.component.html',
 
 })
@@ -14,5 +15,8 @@ export class TitleCardComponent {
 
   @Input()
   topMargin: string = 'mt-6';
+  
+  @Input()
+  topSideButton?: boolean;
   
 }
