@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SpinnerService } from '@core/services';
 
 @Component({
   selector: 'shared-spinner',
@@ -10,5 +11,9 @@ import { CommonModule } from '@angular/common';
   
 })
 export class SpinnerComponent {
+  private spinnerService = inject(SpinnerService);
+  public finishedSpinnerCheck = computed(() => {
+    return this.spinnerService.isLoading()
+  })
 
 }

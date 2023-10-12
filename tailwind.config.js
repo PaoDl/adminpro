@@ -12,10 +12,10 @@ module.exports = {
     themes: [{
       myDarkTheme: {
         "primary": "#797F7A",          
-        "secondary": "#6A896E",          
+        "secondary": "#107869",          
         "accent": "#7E0202",          
         "neutral": "#47546D",          
-        "base-100": "#4E705A",          
+        "base-100": "#2F5233",          
         "info": "#3abff8",          
         "success": "#94CC5D",          
         "warning": "#F3C963",          
