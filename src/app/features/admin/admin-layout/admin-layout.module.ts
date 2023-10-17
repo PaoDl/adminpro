@@ -25,7 +25,8 @@ import { ToastComponent } from '@shared/components';
     CommonModule,
     AdminLayoutRoutingModule,
     FontAwesomeModule,
-    ToastComponent
+    ToastComponent,
+    
   ]
 })
 export class AdminLayoutModule { }
