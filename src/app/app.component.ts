@@ -24,8 +24,7 @@ export class AppComponent {
         return;
 
       case 'authenticated':
-        
-        return;
+         return;
 
       case 'noAuthenticated':
         this.router.navigateByUrl('/');
