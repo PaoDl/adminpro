@@ -14,7 +14,7 @@ export class SpeciesService {
     return this.apiService.getById<Species>("species",species_id)
   }
   
-  getSpiescies() :Observable<MyResponse<Species[]>>{
+  getSpecies() :Observable<MyResponse<Species[]>>{
     return this.apiService.getAll<Species[]>("species")
   }
   
