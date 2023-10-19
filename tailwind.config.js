@@ -34,6 +34,6 @@ module.exports = {
       }      
 
     }],
-    darktheme: "myDarkTheme",
+    darktheme: "myLigthTheme",
   },
 }
