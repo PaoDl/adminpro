@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BiomeRoutingModule } from './biome-routing.module';
 import { BiomeComponent } from './biome.component';
-import { TitleCardComponent } from '@shared/components';
+import { BtnComponent, TitleCardComponent } from '@shared/components';
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { TitleCardComponent } from '@shared/components';
   imports: [
     CommonModule,
     BiomeRoutingModule,
-    TitleCardComponent
+    BtnComponent,
   ]
 })
 export class BiomeModule { }

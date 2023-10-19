@@ -1,2 +1,30 @@
+<div class="overflow-x-auto">
+  <shared-btn class="float-left">Agregar Specie</shared-btn>
+  <div class="card flex-auto w-1">
+    <table class="w-full shadow-lg table-auto">
+      <thead class=" text-white">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium bg-green-800 uppercase tracking-wider">Nombre</th>
+          <th class="px-6 py-3 text-left text-xs font-medium bg-green-800 uppercase tracking-wider">Nombre Cientifico</th>
+          <th class="px-6 py-3 text-left text-xs font-medium bg-green-800 uppercase tracking-wider">Descripcion</th>
+          <th class="px-6 py-3 text-left text-xs font-medium bg-green-800 uppercase tracking-wider">Registro</th>
+          <th class="px-6 py-3 text-left text-xs font-medium bg-green-800 uppercase tracking-wider">Modificación</th>
+          <!-- Agrega más cabeceras aquí si es necesario -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-green-500 hover:scale-105 cursor-pointer bg-green-900 " *ngFor="let specie of species()">
+          <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.name}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.scientific_name}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-black " >{{specie.description}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.created_at}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.updated_at}}</td>
 
-<p>species works!</p>
+          <!-- Agrega más datos aquí si es necesario -->
+        </tr>
+        <!-- Agrega más filas de datos aquí si es necesario -->
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -14,7 +14,7 @@ import { BtnComponent, TitleCardComponent } from '@shared/components';
     CommonModule,
     AnimalsRoutingModule,
     BtnComponent,
-    TitleCardComponent,
+    
   ]
 })
 export class AnimalsModule {

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DietRoutingModule } from './diet-routing.module';
 import { DietComponent } from './diet.component';
+import { BtnComponent } from '@shared/components';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { DietComponent } from './diet.component';
   ],
   imports: [
     CommonModule,
-    DietRoutingModule
+    DietRoutingModule,
+    BtnComponent
   ]
 })
 export class DietModule { }
