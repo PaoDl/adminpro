@@ -17,8 +17,12 @@ const routes: Routes = [
         loadChildren: () => import('@features/admin').then(m => m.AnimalsModule),
       },
       {
-        path: 'progress',
-        loadChildren: () => import('@features/admin').then(m => m.ProgressModule),
+        path: 'biome',
+        loadChildren: () => import('@features/admin').then(m => m.BiomeModule),
+      },
+      {
+        path: 'species',
+        loadChildren: () => import('@features/admin').then(m => m.SpeciesModule),
       },
       {
          path: 'user-profile',
