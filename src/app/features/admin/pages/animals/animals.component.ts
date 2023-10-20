@@ -2,7 +2,8 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { ToastService } from '@core/services';
 import { Animals } from '@features/admin/models';
 import { AnimalsService } from '@features/admin/services';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
+import { faCircleXmark, faPencil, faSkull, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'admin-animals',
@@ -11,7 +12,10 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 })
 export class AnimalsComponent implements OnInit {
   public animals = signal<Animals[]>([])
-
+  public faCommentDots = signal(faCommentDots)
+  public faPencil = signal(faPencil)
+  public faTrash = signal(faTrash)
+   public faSkull =signal (faSkull)
 
 //injecccion de dependecias cuando es de servicio
   private animalsService = inject(AnimalsService);

@@ -1,7 +1,7 @@
 <div class="overflow-x-auto">
-  <shared-btn class="float-left">Agregar Specie</shared-btn>
+  <shared-btn class="float-left">Agregar Especie</shared-btn>
   <div class="card flex-auto w-1">
-    <table class="w-full shadow-lg table-auto">
+    <table class="shadow-lg table-auto ">
       <thead class=" text-white">
         <tr>
           <th class="px-6 py-3 text-left text-xs font-medium bg-green-800 uppercase tracking-wider">Nombre</th>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-green-500 hover:scale-105 cursor-pointer bg-green-900 " *ngFor="let specie of species()">
+        <tr class="hover:bg-green-500 hover:scale-105 cursor-pointer bg-green-900" *ngFor="let specie of species()">
           <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.name}}</td>
           <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.scientific_name}}</td>
           <td class="px-6 py-4 whitespace-nowrap text-black " >{{specie.description}}</td>
