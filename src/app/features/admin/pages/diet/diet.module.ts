@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DietRoutingModule } from './diet-routing.module';
 import { DietComponent } from './diet.component';
 import { BtnComponent } from '@shared/components';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { BtnComponent } from '@shared/components';
   imports: [
     CommonModule,
     DietRoutingModule,
-    BtnComponent
+    BtnComponent,
+    FontAwesomeModule,
   ]
 })
 export class DietModule { }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BiomeRoutingModule } from './biome-routing.module';
 import { BiomeComponent } from './biome.component';
 import { BtnComponent, TitleCardComponent } from '@shared/components';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { BtnComponent, TitleCardComponent } from '@shared/components';
     CommonModule,
     BiomeRoutingModule,
     BtnComponent,
+    FontAwesomeModule,
   ]
 })
 export class BiomeModule { }

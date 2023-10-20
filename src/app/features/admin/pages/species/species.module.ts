@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SpeciesRoutingModule } from './species-routing.module';
 import { BtnComponent, TitleCardComponent } from '@shared/components';
 import { SpeciesComponent } from './species.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SpeciesComponent } from './species.component';
     CommonModule,
     SpeciesRoutingModule,
     BtnComponent,
+    FontAwesomeModule
   ]
 })
 export class SpeciesModule { }

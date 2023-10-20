@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ToastService } from '@core/services';
 import { Diet } from '@features/admin/models';
 import { DietService } from '@features/admin/services';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faEllipsis, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'admin-diet',
@@ -15,6 +15,10 @@ public diets = signal<Diet[]>([])
 //injecccion de dependecias cuando es de servicio
   private dietService = inject(DietService);
   private toastService = inject(ToastService);
+
+  public faEllipsis = signal(faEllipsis);
+  public faPencil = signal(faPencil);
+  public faTrash = signal(faTrash);
   
 //al momento de iniciar el componente ngoninit
   ngOnInit(): void {
@@ -44,5 +48,6 @@ public diets = signal<Diet[]>([])
         })
       }
     });
+    
   }
 }

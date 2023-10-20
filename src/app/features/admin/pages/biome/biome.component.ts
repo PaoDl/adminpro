@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ToastService } from '@core/services';
 import { Biome } from '@features/admin/models';
 import { BiomeService } from '@features/admin/services';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faCommentDots, faEllipsis, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'admin-biome',
@@ -16,6 +16,11 @@ export class BiomeComponent {
 //injecccion de dependecias cuando es de servicio
   private biomeService = inject(BiomeService);
   private toastService = inject(ToastService);
+
+  public faEllipsis = signal(faEllipsis);
+  public faPencil = signal(faPencil);
+  public faTrash = signal(faTrash);
+ 
   
 //al momento de iniciar el componente ngoninit
   ngOnInit(): void {
