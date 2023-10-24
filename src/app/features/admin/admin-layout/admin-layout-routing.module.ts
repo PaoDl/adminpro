@@ -28,10 +28,8 @@ const routes: Routes = [
          path: 'user-profile',
         loadChildren: () => import('@features/admin').then(m => m.ProfileModule),
       },
-      {
-        path: 'diet',
-        loadChildren: () => import('@features/admin').then(m => m.DietModule),
-      },
+      
+      
     ]
   }
 ];

@@ -15,7 +15,7 @@
       <tbody>
         <tr class="hover:bg-green-500 hover:scale-105 cursor-pointer bg-green-900" *ngFor="let biome of biomes()">
           <td class="px-6 py-4 whitespace-nowrap text-black">{{biome.name}}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-black w-15px">{{biome.image_url}}</td>
+          <td class="px-6 py-4 whitespace-nowrap text-black w-15px"><img [src]=biome.image_url alt="Img"></td>
           <td class="px-6 py-4 whitespace-nowrap text-black">{{biome.created_at}}</td>
           <td class="px-6 py-4 whitespace-nowrap text-black">{{biome.updated_at}}</td>
       <td>

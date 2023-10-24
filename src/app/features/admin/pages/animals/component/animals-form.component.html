@@ -1,1 +1,17 @@
-<p>animals-form works!</p>
+<h2>{{animal() ? 'Editar' : 'Crear'}} Animal</h2>
+<form [formGroup]="animalsForm" >
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <shared-input-text [labelTitle]="nameLabel" [control]="$any(animalsForm.get('name'))" />
+    <shared-input-text [labelTitle]="ageLabel" [control]="$any(animalsForm.get('age'))" />
+    <shared-input-text [labelTitle]="genderLabel" [control]="$any(animalsForm.get('gender'))" />
+    <shared-input-text [labelTitle]="arrivalLabel" [control]="$any(animalsForm.get('arrival'))" />
+    <shared-input-text [labelTitle]="health_conditionLabel" [control]="$any(animalsForm.get('health_condition'))" />
+    <shared-input-text [labelTitle]="speciesLabel" [control]="$any(animalsForm.get('species'))" />
+    <shared-input-text [labelTitle]="updated_atLabel" [control]="$any(animalsForm.get('updated_at'))" />
+  </div>
+  <div class="mt-16">
+    <shared-btn [type]="'submit'" [btnDisabled]="!this.animalsForm.valid" class="float-right">
+      {{animal() ? 'Editar' : 'Crear'}}
+    </shared-btn>
+  </div>
+</form>

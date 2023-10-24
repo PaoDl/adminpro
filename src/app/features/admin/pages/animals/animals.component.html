@@ -1,5 +1,5 @@
 <div class="overflow-x-auto">
-  <shared-btn class="float-left">Agregar Animal</shared-btn>
+  <shared-btn class="float-left" onclick="edit_animal.showModal()" >Agregar Animal</shared-btn>
 <div class="card flex-auto w-1">
 <table class="w-full shadow-lg">
   <thead>
@@ -34,7 +34,8 @@
         <div class="dropdown dropdown-bottom">
           <label tabindex="0" class="btn btn-square m-1"><fa-icon [icon]="faEllipsis()"></fa-icon></label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a> <fa-icon [icon]="faPencil()"></fa-icon>Editar</a></li>
+            <li><a onclick="edit_animal.showModal()" (click)="setAnimal(animal)"><fa-icon [icon]="faPencil()"></fa-icon>Editar</a>
+            </li>
             <li><a><fa-icon [icon]="faSkull()"></fa-icon>Dar de Baja</a></li>
           </ul>
         </div>
@@ -49,3 +50,9 @@
 </div>
  
 </div>
+
+<dialog id="edit_animal" class="modal">
+  <div class="modal-box">
+   <animals-form/>
+  </div>
+</dialog>

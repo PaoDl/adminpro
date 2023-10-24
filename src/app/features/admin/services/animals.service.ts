@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { MyResponse } from '@core/models';
 import { ApiService } from '@core/services';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -10,6 +10,10 @@ import { AnimalForm, Animals } from '../models';
 export class AnimalsService {
 
   private apiService = inject(ApiService);
+
+  private _currentAnimal = signal<Animals | null>(null);
+
+  public currentsAnimal = computed(() => this._currentAnimal());
 
   getAnimal(animal_id:string):Observable<MyResponse<Animals>> {
     return this.apiService.getById<Animals>("animals",animal_id)
@@ -30,4 +34,10 @@ export class AnimalsService {
       .delete<Record<string, never>>("animals",animal_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
+
+  setAnimal(animal: Animals) {
+    this._currentAnimal.set(animal);
+    
+  }
+
 }
