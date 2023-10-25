@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ToastService } from '@core/services';
 import { Biome } from '@features/admin/models';
 import { BiomeService } from '@features/admin/services';
@@ -9,7 +9,7 @@ import { faCircleXmark, faCommentDots, faEllipsis, faPencil, faTrash } from '@fo
   templateUrl: './biome.component.html',
   styleUrls: ['./biome.component.css']
 })
-export class BiomeComponent {
+export class BiomeComponent implements OnInit {
   public biomes = signal<Biome[]>([])
 
 
@@ -25,6 +25,10 @@ export class BiomeComponent {
 //al momento de iniciar el componente ngoninit
   ngOnInit(): void {
     this.getBiomes();
+  }
+
+  public setBiome(biome: Biome) {
+    this.biomeService.setBiome(biome);
   }
 
   private getBiomes() {

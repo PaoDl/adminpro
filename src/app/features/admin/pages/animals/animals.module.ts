@@ -6,7 +6,7 @@ import { AnimalsComponent } from './animals.component';
 import { BtnComponent, InputTextComponent, TitleCardComponent,  } from '@shared/components';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AnimalsFormComponent } from './component';
+import { AnimalsFormComponent } from './component/animals-form';
 
 
 
@@ -23,7 +23,6 @@ import { AnimalsFormComponent } from './component';
     ReactiveFormsModule,
     InputTextComponent,
     TitleCardComponent,
-    
   ]
 })
 export class AnimalsModule {

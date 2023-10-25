@@ -1,5 +1,5 @@
 <div class="overflow-x-auto">
-  <shared-btn class="float-left">Agrega Bioma</shared-btn>
+  <shared-btn class="float-left" onclick="edit_biome.showModal()">Agrega Bioma</shared-btn>
   <div class="card flex-auto w-1 ">
     <table class="min-w-full shadow-lg table-auto ">
       <thead class=" text-white">
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-green-500 hover:scale-105 cursor-pointer bg-green-900" *ngFor="let biome of biomes()">
+        <tr class="hover:bg-green-500 hover:scale  cursor-pointer bg-green-900" *ngFor="let biome of biomes()">
           <td class="px-6 py-4 whitespace-nowrap text-black">{{biome.name}}</td>
           <td class="px-6 py-4 whitespace-nowrap text-black w-15px"><img [src]=biome.image_url alt="Img"></td>
           <td class="px-6 py-4 whitespace-nowrap text-black">{{biome.created_at}}</td>
@@ -22,7 +22,7 @@
         <div class="dropdown dropdown-bottom">
           <label tabindex="0" class="btn btn-square m-1"><fa-icon [icon]="faEllipsis()"></fa-icon></label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a> <fa-icon [icon]="faPencil()"></fa-icon>Editar</a></li>
+            <li><a onclick="edit_biome.showModal()" (click)="setBiome(biome)"> <fa-icon [icon]="faPencil()"></fa-icon>Editar</a></li>
             <li><a><fa-icon [icon]="faTrash()"></fa-icon>Eliminar</a></li>
           </ul>
         </div>
@@ -35,3 +35,9 @@
   </div>
 
 </div>
+
+<dialog id="edit_biome" class="modal">
+  <div class="modal-box">
+    <biome-form/>
+  </div>
+</dialog>

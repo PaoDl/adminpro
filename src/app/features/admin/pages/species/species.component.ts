@@ -25,6 +25,10 @@ public species = signal<Species[]>([])
     this.getSpecies();
   }
 
+  public setSpecie(specie: Species) {
+    this.speciesService.setSpecie(specie);
+  }
+
   private getSpecies() {
     this.speciesService.getSpecies().subscribe({
       next: ({ statusCode, message, reply }) => {

@@ -1,5 +1,5 @@
 <div class="overflow-x-auto">
-  <shared-btn class="float-left">Agregar Especie</shared-btn>
+  <shared-btn class="float-left" onclick="edit_specie.showModal()">Agregar Especie</shared-btn>
   <div class="card flex-auto w-1">
     <table class="shadow-lg table-auto ">
       <thead class=" text-white">
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-green-500 hover:scale-105 cursor-pointer bg-green-900" *ngFor="let specie of species()">
+        <tr class="hover:bg-green-500 hover:scale  cursor-pointer bg-green-900" *ngFor="let specie of species()">
           <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.name}}</td>
           <td class="px-6 py-4 whitespace-nowrap text-black">{{specie.scientific_name}}</td>
           <td class="px-6 py-4 whitespace-nowrap text-black " >{{specie.description}}</td>
@@ -24,7 +24,7 @@
             <div class="dropdown dropdown-bottom">
               <label tabindex="0" class="btn btn-square m-1"><fa-icon [icon]="faEllipsis()"></fa-icon></label>
               <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a> <fa-icon [icon]="faPencil()"></fa-icon>Editar</a></li>
+                <li><a onclick="edit_specie.showModal()" (click)="setSpecie(specie)"> <fa-icon [icon]="faPencil()"></fa-icon>Editar</a></li>
                 <li><a><fa-icon [icon]="faTrash()"></fa-icon>Eliminar</a></li>
               </ul>
             </div>
@@ -38,3 +38,9 @@
   </div>
 
 </div>
+
+<dialog id="edit_specie" class="modal">
+  <div class="modal-box">
+    <species-form />
+  </div>
+</dialog>

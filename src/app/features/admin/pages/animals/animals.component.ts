@@ -33,6 +33,7 @@ export class AnimalsComponent implements OnInit {
     this.animalsService.setAnimal(animal);
     
   }
+  
 
   private getAnimals() {
     this.animalsService.getAnimals().subscribe({

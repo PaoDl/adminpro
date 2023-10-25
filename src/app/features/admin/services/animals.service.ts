@@ -13,7 +13,7 @@ export class AnimalsService {
 
   private _currentAnimal = signal<Animals | null>(null);
 
-  public currentsAnimal = computed(() => this._currentAnimal());
+  public currentAnimal = computed(() => this._currentAnimal());
 
   getAnimal(animal_id:string):Observable<MyResponse<Animals>> {
     return this.apiService.getById<Animals>("animals",animal_id)
@@ -23,7 +23,7 @@ export class AnimalsService {
     return this.apiService.getAll<Animals[]>("animals")
   }
   
-  editAnimal(animal_id:string, animalForm: AnimalForm ):Observable<MyResponse<Animals>>  { 
+  editAnimal( animalForm: AnimalForm, animal_id:string ):Observable<MyResponse<Animals>>  { 
     return this.apiService
       .update<Animals>("animals", animalForm, animal_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));

@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { ApiService } from '@core/services';
 import { Species } from '../models';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -9,6 +9,10 @@ import { MyResponse } from '@core/models';
 })
 export class SpeciesService {
   private apiService = inject(ApiService);
+
+  private _currentSpecie = signal<Species | null>(null);
+
+  public currentSpecie = computed(() => this._currentSpecie());
 
   getSpecie(species_id: string):Observable<MyResponse<Species>> {
     return this.apiService.getById<Species>("species",species_id)
@@ -28,5 +32,9 @@ export class SpeciesService {
     return this.apiService
       .delete<Record<string, never>>("species",species_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));
+  }
+
+  setSpecie(specie: Species) {
+    this._currentSpecie.set(specie);
   }
 }

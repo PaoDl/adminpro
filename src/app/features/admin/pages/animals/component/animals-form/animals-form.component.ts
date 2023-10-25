@@ -1,7 +1,6 @@
-import { Component, DestroyRef, computed, effect, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastService } from '@core/services';
-import { Animals, AnimalsService } from '@features/admin';
+import { Component,  computed, effect, inject, signal } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AnimalsService } from '@features/admin';
 
 
 @Component({
@@ -11,7 +10,7 @@ import { Animals, AnimalsService } from '@features/admin';
 })
 export class AnimalsFormComponent {
   
-public animalsForm!: FormGroup;
+  public animalsForm!: FormGroup;
   public nameLabel = 'Nombre';
   public ageLabel = 'Edad';
   public genderLabel = 'Genero';
@@ -25,7 +24,7 @@ public animalsForm!: FormGroup;
   private fb = inject(FormBuilder);
  
   
-  public animal = computed(() => this.animalsService.currentsAnimal())
+  public animal = computed(() => this.animalsService.currentAnimal());
   
   public buildFormEffect = effect(() => {
     if(this.animal()){
@@ -53,7 +52,12 @@ public animalsForm!: FormGroup;
     }
   }) 
 
-    
-  
-    
+  public onSave() {
+    if (this.animalsForm.valid) {
+      this.animalsService
+        .editAnimal(this.animalsForm.value, this.animal()!.animal_id)
+        console.log(this.animal)
+  }
+}
+
 }

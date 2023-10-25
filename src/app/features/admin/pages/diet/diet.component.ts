@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+
 import { ToastService } from '@core/services';
 import { Diet } from '@features/admin/models';
 import { DietService } from '@features/admin/services';
@@ -9,7 +10,7 @@ import { faCircleXmark, faEllipsis, faPencil, faTrash } from '@fortawesome/free-
   templateUrl: './diet.component.html',
   styles:[]
 })
-export class DietComponent {
+export class DietComponent implements OnInit {
 public diets = signal<Diet[]>([])
 
 //injecccion de dependecias cuando es de servicio
@@ -23,6 +24,9 @@ public diets = signal<Diet[]>([])
 //al momento de iniciar el componente ngoninit
   ngOnInit(): void {
     this.getDiets();
+  }
+  public setDiet(diet: Diet) {
+    this.dietService.setDiet(diet);
   }
 
   private getDiets() {

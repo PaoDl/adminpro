@@ -1,1 +1,1 @@
-export * from './animals-form.component';
+export * from './animals-form';

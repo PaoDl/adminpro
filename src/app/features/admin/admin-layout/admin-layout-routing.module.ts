@@ -19,6 +19,9 @@ const routes: Routes = [
       {
         path: 'biome',
         loadChildren: () => import('@features/admin').then(m => m.BiomeModule),
+      },{
+        path: 'diet',
+        loadChildren: () => import('@features/admin').then(m => m.DietModule),
       },
       {
         path: 'species',
