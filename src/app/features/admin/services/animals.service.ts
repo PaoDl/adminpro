@@ -35,7 +35,7 @@ export class AnimalsService {
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 
-  setAnimal(animal: Animals) {
+  setAnimal(animal: Animals |null) {
     this._currentAnimal.set(animal);
     
   }

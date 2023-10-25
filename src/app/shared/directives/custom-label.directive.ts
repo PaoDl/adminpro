@@ -88,5 +88,10 @@ export class CustomLabelDirective {
       this.htmlElement.nativeElement.innerText = message;
       return;
     }
+    if (errors.includes('min')) {
+      const { min } = this._errors['min'];
+      this.htmlElement.nativeElement.innerText = `Este campo no puede ser menor a ${min}.`;
+      return;
+    }
   }
 }
