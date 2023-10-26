@@ -39,5 +39,13 @@ export class AnimalsService {
     this._currentAnimal.set(animal);
     
   }
+  
+  createAnimal(animalForm: AnimalForm) {
+    const {...animalbody}=animalForm
+    return this.apiService
+      .store<AnimalForm>('animals', animalbody)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
+    
+  }
 
 }

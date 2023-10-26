@@ -1,8 +1,9 @@
 <h2>{{animal() ? 'Editar' : 'Crear'}} Animal</h2>
 <form [formGroup]="animalsForm" (ngSubmit)="onSave()" >
   <div class="grid  grid-cols-1 md:grid-cols-2 gap-6 items-center">
-    <shared-input-text [labelTitle]="nameLabel" [control]="$any(animalsForm.get('name'))" />
-    <shared-input-text [labelTitle]="ageLabel" [control]="$any(animalsForm.get('age'))" />
+    <shared-input-text [labelTitle]="nameLabel" [control]="$any(animalsForm.get('name'))"/>
+    <shared-input-text [labelTitle]="birthLabel" [control]="$any(animalsForm.get('birth'))" />
+    <shared-input-text [labelTitle]="ageLabel" [control]="$any(animalsForm.get('age'))" [type]="'number'"/>
     <div justify-around items-center >Genero
     <select formControlName="gender" class=" select select-bordered w-full max-w-xs">
        <option disabled selected>Seleccionar</option>
@@ -25,9 +26,14 @@
           <option value="quarantine">Quarentena</option>
         </select>
       </div>
+      <div justify-around items-center>Especies
+        <select class=" select select-bordered w-full max-w-xs" formControlName="species_id">
+          <option disabled selected>Seleccionar</option>
+          <option [value]="item.species_id" *ngFor="let item of species()">{{item.name}}</option>
+        </select>
+      </div>
     <shared-input-text [labelTitle]="arrivalLabel" [control]="$any(animalsForm.get('arrival'))" />
-        
-    
+   
     
   </div>
   <div class="mt-16 flex justify-around items-center">
