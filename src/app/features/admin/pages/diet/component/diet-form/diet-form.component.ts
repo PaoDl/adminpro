@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DietService } from '@features/admin/services';
 
 @Component({
@@ -12,7 +12,7 @@ export class DietFormComponent {
   public dietForm!: FormGroup;
   public nameLabel = 'Nombre';
   public descriptionLabel = 'Descripcion';
-  public updated_atLabel = 'Fecha de Modificacion';
+  
 
   private dietService = inject(DietService);
   private fb = inject(FormBuilder);
@@ -22,16 +22,26 @@ export class DietFormComponent {
   public buildFormEffect = effect(() => {
     if (this.diet()){
       this.dietForm = this.fb.group({
-        name: [this.diet()!.name],
-        description: [this.diet()!.description],
-        updated_at: [this.diet()!.updated_at],
+        name: [this.diet()!.name,[Validators.required, Validators.minLength(2)]],
+        description: [this.diet()!.description,[Validators.required,Validators.minLength(10)]],
+        
       })
     } else {
       this.dietForm = this.fb.group({
-        name: [''],
-        description: [''],
-        updated_at: [''],
+        name: ['',[Validators.required, Validators.minLength(2)]],
+        description: ['',[Validators.required, Validators.minLength(10)]],
+       
       })
     }
   })
+  public onSave() {
+    if (this.dietForm.valid) {
+      
+      console.log(this.dietForm.value)
+    }
+  }
+  
+  setNull() {
+    this.dietService.setDiet(null);
+  }
 }

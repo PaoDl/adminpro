@@ -80,7 +80,11 @@ export class CustomLabelDirective {
           message =
             'El campo debe tener al menos una mayúscula, una minúscula, un número y un carácter especial @ # $ % ^ & + = ! ';
           break;
-
+        case
+          '^(http(s)?:\\/\\/)?([\\w-]+\\.)+[\\w-]+(\\/[\\w- ./?%&=]*)?$':
+          message =
+            'El campo debe ser una URL ';
+          break;
         default:
           break;
       }

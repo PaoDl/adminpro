@@ -1,1 +1,1 @@
-export * from './boime-form.component';
+export * from './biome-form.component';

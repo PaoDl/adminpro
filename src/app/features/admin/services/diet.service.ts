@@ -33,7 +33,7 @@ export class DietService {
       .delete<Record<string, never>>("diet",diet_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
-  setDiet(diet: Diet) {
+  setDiet(diet: Diet | null) {
     this._currentDiet.set(diet);
   }
 }

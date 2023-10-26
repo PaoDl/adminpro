@@ -29,23 +29,23 @@ export class AnimalsFormComponent {
   public buildFormEffect = effect(() => {
     if(this.animal()){
       this.animalsForm = this.fb.group({
-      name: [this.animal()!.name],
+      name: [this.animal()!.name,[Validators.required,]],
       age: [this.animal()!.age,[Validators.required, Validators.min(0)]],
-      gender: [this.animal()!.gender],
-      arrival: [this.animal()!.arrival],
-      health_condition: [this.animal()!.health_condition],
-      exhibit_status: [this.animal()!.exhibit_status],
+      gender: [this.animal()!.gender,[Validators.required,]],
+      arrival: [this.animal()!.arrival,[Validators.required,]],
+      health_condition: [this.animal()!.health_condition,[Validators.required,]],
+      exhibit_status: [this.animal()!.exhibit_status,[Validators.required,]],
       
       
     })
     } else {
       this.animalsForm = this.fb.group({
-      name: [''],
+      name: ['',[Validators.required,]],
       age: ['',[Validators.required, Validators.min(0)]],
-      gender: [''],
-      arrival: [''],
-      health_condition: [''],
-      exhibit_status: [''],
+      gender: ['',[Validators.required,]],
+      arrival: ['',[Validators.required,]],
+      health_condition: ['',[Validators.required,]],
+      exhibit_status: ['',[Validators.required,]],
       
     })
     }

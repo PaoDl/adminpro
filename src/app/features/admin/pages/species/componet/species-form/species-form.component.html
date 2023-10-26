@@ -1,16 +1,24 @@
 <h2>{{specie() ? 'Editar' : 'Crear'}} Especie</h2>
 <form [formGroup]="speciesForm">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
     <shared-input-text [labelTitle]="nameLabel" [control]="$any(speciesForm.get('name'))" />
     <shared-input-text [labelTitle]="scientific_nameLabel" [control]="$any(speciesForm.get('scientific_name'))" />
     <shared-input-text [labelTitle]="descriptionLabel" [control]="$any(speciesForm.get('description'))" />
     <shared-input-text [labelTitle]="dietsLabel" [control]="$any(speciesForm.get('diets'))" />
     <shared-input-text [labelTitle]="biomeLabel" [control]="$any(speciesForm.get('biome'))" />
-    <shared-input-text [labelTitle]="updated_atLabel" [control]="$any(speciesForm.get('updated_at'))" />
+
   </div>
-  <div class="mt-16">
-    <shared-btn [type]="'submit'" [btnDisabled]="!this.speciesForm.valid" class="float-right">
+  <div class="mt-16 flex justify-around items-center">
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn" (click)="setNull()">Cerrar</button>
+      </form>
+    </div>
+    <shared-btn [type]="'submit'" 
+                [btnDisabled]="!this.speciesForm.valid"
+                class="">
       {{specie() ? 'Editar' : 'Crear'}}
     </shared-btn>
   </div>
-</form>
+  </form>

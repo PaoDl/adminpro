@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SpeciesService } from '@features/admin/services';
 
 @Component({
@@ -14,7 +14,7 @@ export class SpeciesFormComponent {
   public descriptionLabel = 'Descripcion';
   public dietsLabel = 'Dietas';
   public biomeLabel = 'Bioma';
-  public updated_atLabel = 'Fecha de Modificacion';
+  
 
   private speciesService = inject(SpeciesService);
   private fb = inject(FormBuilder);
@@ -24,22 +24,32 @@ export class SpeciesFormComponent {
    public buildFormEffect = effect(() => {
     if(this.specie()){
       this.speciesForm = this.fb.group({
-      name: [this.specie()!.name],
-      scientific_name: [this.specie()!.scientific_name],
-      description: [this.specie()!.description],
-      diets: [this.specie()!.diets],
-      biome: [this.specie()!.biome],
-      updated_at:[this.specie()!.updated_at],
+      name: [this.specie()!.name,[Validators.required, Validators.min(2)]],
+      scientific_name: [this.specie()!.scientific_name,[Validators.required]],
+      description: [this.specie()!.description,[Validators.required,Validators.minLength(15)]],
+      diets: [this.specie()!.diets,[Validators.required]],
+      biome: [this.specie()!.biome,[Validators.required]],
+      
     })
     } else {
       this.speciesForm = this.fb.group({
-      name: [''],
-      scientific_name: [''],
-      description: [''],
-      diets: [''],
-      biome: [''],
-      updated_at:[''],
+      name: ['', [Validators.required,Validators.minLength(2)]],
+      scientific_name: ['',[Validators.required]],
+      description: ['',[Validators.required,Validators.minLength(15)]],
+      diets: ['',[Validators.required]],
+      biome: ['',[Validators.required]],
+      
     })
     }
-  }) 
+   })
+  public onSave() {
+    if (this.speciesForm.valid) {
+      
+      console.log(this.speciesForm.value)
+    }
+  }
+  
+  setNull() {
+    this.speciesService.setSpecie(null);
+  }
 }

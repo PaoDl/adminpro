@@ -34,7 +34,7 @@ export class SpeciesService {
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 
-  setSpecie(specie: Species) {
+  setSpecie(specie: Species | null) {
     this._currentSpecie.set(specie);
   }
 }

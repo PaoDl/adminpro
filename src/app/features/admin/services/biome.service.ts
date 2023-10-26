@@ -34,7 +34,7 @@ export class BiomeService {
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 
-  setBiome(biome: Biome) {
+  setBiome(biome: Biome | null) {
     this._currentBiome.set(biome);
   }
 

@@ -1,14 +1,36 @@
 <h2>{{animal() ? 'Editar' : 'Crear'}} Animal</h2>
 <form [formGroup]="animalsForm" (ngSubmit)="onSave()" >
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="grid  grid-cols-1 md:grid-cols-2 gap-6 items-center">
     <shared-input-text [labelTitle]="nameLabel" [control]="$any(animalsForm.get('name'))" />
     <shared-input-text [labelTitle]="ageLabel" [control]="$any(animalsForm.get('age'))" />
-    <shared-input-text [labelTitle]="genderLabel" [control]="$any(animalsForm.get('gender'))" />
+    <div justify-around items-center >Genero
+    <select formControlName="gender" class=" select select-bordered w-full max-w-xs">
+       <option disabled selected>Seleccionar</option>
+       <option value="M">Masculino</option>
+       <option value="F">Femenino</option>
+    </select>
+    </div>
+    <div justify-around items-center> Salud
+      <select   class=" select select-bordered w-full max-w-xs" formControlName="health_condition">
+        <option disabled selected>Seleccionar</option>
+        <option value="healthy">Saludable</option>
+        <option value="sick">Enfermo</option>
+        <option value="injured">Herido</option>
+      </select>
+    </div>
+      <div justify-around items-center> Exhibido
+        <select class=" select select-bordered w-full max-w-xs" formControlName="exhibit_status">
+          <option disabled selected>Seleccionar</option>
+          <option value="exhibit">Exhibido</option>
+          <option value="quarantine">Quarentena</option>
+        </select>
+      </div>
     <shared-input-text [labelTitle]="arrivalLabel" [control]="$any(animalsForm.get('arrival'))" />
-    <shared-input-text [labelTitle]="health_conditionLabel" [control]="$any(animalsForm.get('health_condition'))" />
+        
+    
     
   </div>
-  <div class="mt-16 flex justify-around">
+  <div class="mt-16 flex justify-around items-center">
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->
