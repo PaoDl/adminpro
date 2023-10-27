@@ -27,12 +27,12 @@ export class SpeciesFormComponent {
   private dietService = inject(DietService);
 
   public biome = signal<Biome[]>([]);
-  public diet = signal<Diet[]>([]);
+  public diets = signal<Diet[]>([]);
   public specie = computed(() => this.speciesService.currentSpecie());
  
    constructor(){
      this.loadBiome();
-    this.loadDiet
+     this.loadDiet();
    }
    public buildFormEffect = effect(() => {
     if(this.specie()){
@@ -118,7 +118,7 @@ export class SpeciesFormComponent {
   private loadDiet() {
     this.dietService.getDiets()
       .subscribe({
-      next: ({reply})=>this.diet.set(reply)
+      next: ({reply})=>this.diets.set(reply)
     })
   }
 }

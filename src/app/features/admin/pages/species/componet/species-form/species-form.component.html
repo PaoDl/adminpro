@@ -11,9 +11,9 @@
           <option [value]="item.biome_id" *ngFor="let item of biome()">{{item.name}}</option>
         </select>
       </div>
-    <div class="form-control" formGroupName="diet_id">
-      <label class="cursor-pointer label">Dietas
-        <span class="label-text">Remember me</span>
+    <div class="form-control" *ngFor="let diet of diets()" >
+      <label class="cursor-pointer label" >
+        <span class="label-text">{{diet.name}}</span>
         <input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
       </label>
     </div>
