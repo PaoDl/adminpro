@@ -14,20 +14,20 @@ export class BiomeService {
   private _currentBiome = signal<Biome | null>(null);
   public currentBiome = computed(() => this._currentBiome());
 
+  getBiomes() :Observable<MyResponse<Biome[]>>{
+    return this.apiService.getAll<Biome[]>("biome")
+  }
+
   getBiome(biome_id:string):Observable<MyResponse<Biome>> {
     return this.apiService.getById<Biome>("biome",biome_id)
   }
 
-  getBiomes() :Observable<MyResponse<Biome[]>>{
-    return this.apiService.getAll<Biome[]>("biome")
-  }
-  
-  updateBiome(biome_id:string, biome: Biome ):Observable<MyResponse<Biome>>  { 
+  editBiome(biomeForm:Biome ,biome_id:string):Observable<MyResponse<Biome>>  { 
     return this.apiService
-      .update<Biome>("biome", biome, biome_id)
+      .update<Biome>("biome", biomeForm, biome_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
-  
+
   deleteBiome(biome_id:string):Observable<MyResponse<Record<string, never>>>  { 
     return this.apiService
       .delete<Record<string, never>>("biome",biome_id)
@@ -37,5 +37,15 @@ export class BiomeService {
   setBiome(biome: Biome | null) {
     this._currentBiome.set(biome);
   }
+  
+  createBiome(biomeForm: Biome) {
+    const { ...biomebody } = biomeForm
+    return this.apiService
+      .store<Biome>('biome', biomebody)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
+  }
+ 
+
+  
 
 }

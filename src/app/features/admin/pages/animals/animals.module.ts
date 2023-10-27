@@ -7,13 +7,15 @@ import { BtnComponent, InputTextComponent, TitleCardComponent,  } from '@shared/
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AnimalsFormComponent } from './component/animals-form';
+import { AnimalDeleteComponent } from './component/animal-delete/animal-delete.component';
 
 
 
 @NgModule({
   declarations: [
     AnimalsComponent,
-    AnimalsFormComponent
+    AnimalsFormComponent,
+    AnimalDeleteComponent
   ],
   imports: [
     CommonModule,

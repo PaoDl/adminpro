@@ -22,9 +22,9 @@ export class SpeciesService {
     return this.apiService.getAll<Species[]>("species")
   }
   
-  updateSpecies(species_id:string, species: Species ):Observable<MyResponse<Species>>  { 
+  editSpecies( speciesForm: Species, species_id:string ):Observable<MyResponse<Species>>  { 
     return this.apiService
-      .update<Species>("species", species, species_id)
+      .update<Species>("species", speciesForm, species_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
   
@@ -36,5 +36,13 @@ export class SpeciesService {
 
   setSpecie(specie: Species | null) {
     this._currentSpecie.set(specie);
+  }
+
+  createSpecies(speciesForm: Species) {
+    const {...speciesbody}=speciesForm
+    return this.apiService
+      .store<Species>('species', speciesbody)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
+    
   }
 }

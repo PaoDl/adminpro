@@ -22,9 +22,9 @@ export class DietService {
     return this.apiService.getAll<Diet[]>("diet")
   }
   
-  updateDiet(diet_id:string, diet: Diet ):Observable<MyResponse<Diet>>  { 
+  editDiet(dietForm:Diet ,diet_id:string):Observable<MyResponse<Diet>>  { 
     return this.apiService
-      .update<Diet>("diet", diet, diet_id)
+      .update<Diet>("diet", dietForm, diet_id)
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
   
@@ -35,5 +35,11 @@ export class DietService {
   }
   setDiet(diet: Diet | null) {
     this._currentDiet.set(diet);
+  }
+    createDiet(dietForm: Diet) {
+    const { ...dietbody } = dietForm
+    return this.apiService
+      .store<Diet>('diet', dietbody)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 }

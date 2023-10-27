@@ -1,5 +1,5 @@
 <h2>{{diet() ? 'Editar' : 'Crear'}} Dieta</h2>
-<form [formGroup]="dietForm">
+<form [formGroup]="dietForm" (ngSubmit)="onSave()">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
     <shared-input-text [labelTitle]="nameLabel" [control]="$any(dietForm.get('name'))" />
     <shared-input-text [labelTitle]="descriptionLabel" [control]="$any(dietForm.get('description'))" />

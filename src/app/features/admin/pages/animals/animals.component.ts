@@ -1,4 +1,4 @@
-import { Component,  OnInit, inject, signal } from '@angular/core';
+import { Component,  OnInit, computed, inject, signal } from '@angular/core';
 
 import { ToastService } from '@core/services';
 import { Animals } from '@features/admin/models';
@@ -23,6 +23,7 @@ export class AnimalsComponent implements OnInit {
   private animalsService = inject(AnimalsService);
   private toastService = inject(ToastService);
 
+  public oneAnimal = computed(() => this.animalsService.currentAnimal());
   
 //al momento de iniciar el componente ngoninit
   ngOnInit(): void {
@@ -32,6 +33,39 @@ export class AnimalsComponent implements OnInit {
   public setAnimal(animal:Animals) {
     this.animalsService.setAnimal(animal);
     
+  }
+  public deleteAnimal(animal: Animals) {
+    this.animalsService.deleteAnimal(animal.animal_id)
+      .subscribe({
+      next: ({ statusCode, message, reply }) => {
+        
+          if (statusCode === 200) {
+            this.getAnimals();
+          this.toastService.show({
+          color: 'success',
+          message,
+          icon: faCircleXmark,
+          duration: 4000,
+        })
+        } else {
+          this.toastService.show({
+            color: 'error',
+            message,
+            icon: faCircleXmark,
+            duration: 4000,
+          })
+        }
+      },
+      error: (error) => {
+        this.toastService.show({
+          color: 'error',
+          message: error,
+          icon: faCircleXmark,
+          duration: 4000,
+        })
+      }
+    })
+      
   }
   
 

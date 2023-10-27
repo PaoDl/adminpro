@@ -1,6 +1,10 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, DestroyRef, computed, effect, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SpeciesService } from '@features/admin/services';
+import { ToastService } from '@core/services';
+import { Biome, Diet } from '@features/admin/models';
+import { BiomeService, DietService, SpeciesService } from '@features/admin/services';
+import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'species-form',
@@ -15,20 +19,29 @@ export class SpeciesFormComponent {
   public dietsLabel = 'Dietas';
   public biomeLabel = 'Bioma';
   
-
+  private toastService = inject(ToastService);
+  private destroyRef = inject(DestroyRef);
   private speciesService = inject(SpeciesService);
   private fb = inject(FormBuilder);
+  private biomeService = inject(BiomeService);
+  private dietService = inject(DietService);
 
+  public biome = signal<Biome[]>([]);
+  public diet = signal<Diet[]>([]);
   public specie = computed(() => this.speciesService.currentSpecie());
-
+ 
+   constructor(){
+     this.loadBiome();
+    this.loadDiet
+   }
    public buildFormEffect = effect(() => {
     if(this.specie()){
       this.speciesForm = this.fb.group({
       name: [this.specie()!.name,[Validators.required, Validators.min(2)]],
       scientific_name: [this.specie()!.scientific_name,[Validators.required]],
       description: [this.specie()!.description,[Validators.required,Validators.minLength(15)]],
-      diets: [this.specie()!.diets,[Validators.required]],
-      biome: [this.specie()!.biome,[Validators.required]],
+      diet_id: [this.specie()!.diets,[Validators.required]],
+      biome: [this.specie()!.biome.biome_id,[Validators.required]],
       
     })
     } else {
@@ -36,20 +49,76 @@ export class SpeciesFormComponent {
       name: ['', [Validators.required,Validators.minLength(2)]],
       scientific_name: ['',[Validators.required]],
       description: ['',[Validators.required,Validators.minLength(15)]],
-      diets: ['',[Validators.required]],
+      diet_id: ['',[Validators.required]],
       biome: ['',[Validators.required]],
       
     })
     }
    })
   public onSave() {
-    if (this.speciesForm.valid) {
+    if (this.specie()) {
+      this.speciesService
+        .editSpecies(this.speciesForm.value, this.specie()!.species_id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+          next: ({ reply, message }) =>
+            this.toastService.show({
+              color: 'success',
+              message,
+              icon: faCheckCircle,
+              duration: 4000,
+            }),
+          error: (message) => {
+            console.log(message);
+            this.toastService.show({
+              color: 'error',
+              message,
+              icon: faCircleXmark,
+              duration: 4000,
+            });
+          },
+        });
+    } else {
+      this.speciesService
+        .createSpecies(this.speciesForm.value)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+          next: ({ reply, message }) =>
+            this.toastService.show({
+              color: 'success',
+              message,
+              icon: faCheckCircle,
+              duration: 4000,
+            }),
+          error: (message) => {
+            console.log(message);
+            this.toastService.show({
+              color: 'error',
+              message,
+              icon: faCircleXmark,
+              duration: 4000,
+            });
+          },
+        });
       
-      console.log(this.speciesForm.value)
     }
   }
   
   setNull() {
     this.speciesService.setSpecie(null);
+  }
+  private loadBiome() {
+    this.biomeService.getBiomes()
+      .subscribe({
+      next: ({reply})=>this.biome.set(reply)
+    })
+  }
+
+  
+  private loadDiet() {
+    this.dietService.getDiets()
+      .subscribe({
+      next: ({reply})=>this.diet.set(reply)
+    })
   }
 }

@@ -1,8 +1,8 @@
 <h2>{{biome()? 'Editar' :'Crear'}} Bioma</h2>
-<form [formGroup]="biomeForm">
+<form [formGroup]="biomeForm"(ngSubmit)="onSave()">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <shared-input-text [labelTitle]="nameLabel" [control]="$any(biomeForm.get('name'))" />
-    <shared-input-text [labelTitle]="imagen_urlLabel" [control]="$any(biomeForm.get('imagen_url'))" />
+    <shared-input-text [labelTitle]="image_urlLabel" [control]="$any(biomeForm.get('image_url'))" />
   </div>
   <div class="mt-16 justify-around items-center">
     <div class="modal-action">

@@ -1,5 +1,5 @@
 <h2>{{animal() ? 'Editar' : 'Crear'}} Animal</h2>
-<form [formGroup]="animalsForm" (ngSubmit)="onSave()" >
+<form [formGroup]="animalsForm" (ngSubmit)="onSave()" method="dialog">
   <div class="grid  grid-cols-1 md:grid-cols-2 gap-6 items-center">
     <shared-input-text [labelTitle]="nameLabel" [control]="$any(animalsForm.get('name'))"/>
     <shared-input-text [labelTitle]="birthLabel" [control]="$any(animalsForm.get('birth'))" />
@@ -36,6 +36,7 @@
    
     
   </div>
+
   <div class="mt-16 flex justify-around items-center">
     <div class="modal-action">
       <form method="dialog">

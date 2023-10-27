@@ -1,6 +1,9 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, DestroyRef, computed, effect, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastService } from '@core/services';
 import { DietService } from '@features/admin/services';
+import { faCheckCircle, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector:'diet-form',
@@ -13,7 +16,8 @@ export class DietFormComponent {
   public nameLabel = 'Nombre';
   public descriptionLabel = 'Descripcion';
   
-
+  private toastService = inject(ToastService);
+  private destroyRef = inject(DestroyRef);
   private dietService = inject(DietService);
   private fb = inject(FormBuilder);
 
@@ -35,9 +39,51 @@ export class DietFormComponent {
     }
   })
   public onSave() {
-    if (this.dietForm.valid) {
+    if (this.diet()) {
+      this.dietService
+        .editDiet(this.dietForm.value, this.diet()!.diet_id)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: ({ reply, message }) =>
+            this.toastService.show({
+              color: 'success',
+              message,
+              icon: faCheckCircle,
+              duration: 4000,
+            }),
+          error: (message) => {
+            console.log(message);
+            this.toastService.show({
+              color: 'error',
+              message,
+              icon: faCircleXmark,
+              duration: 4000,
+            });
+          }       
+        });
       
-      console.log(this.dietForm.value)
+    } else {
+      this.dietService
+        .createDiet(this.dietForm.value)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+          next: ({ reply, message }) =>
+            this.toastService.show({
+              color: 'success',
+              message,
+              icon: faCheckCircle,
+              duration: 4000,
+            }),
+          error: (message) => {
+            console.log(message);
+            this.toastService.show({
+              color: 'error',
+              message,
+              icon: faCircleXmark,
+              duration: 4000,
+            });
+          },
+        });
     }
   }
   

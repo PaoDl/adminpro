@@ -36,7 +36,7 @@
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
               <li><a onclick="edit_animal.showModal()" (click)="setAnimal(animal)"><fa-icon [icon]="faPencil()"></fa-icon>Editar</a>
               </li>
-              <li><a><fa-icon [icon]="faSkull()"></fa-icon>Dar de Baja</a></li>
+              <li><a onclick="baja_animal.showModal()" (click)="setAnimal(animal)"><fa-icon [icon]="faSkull()"></fa-icon>Dar de Baja</a></li>
             </ul>
           </div>
         </td>
@@ -57,4 +57,22 @@
   <div class="modal-box">
     <animals-form/>
   </div>
+</dialog>
+
+<dialog id="baja_animal" class="modal">
+  <form method="dialog">
+  <div class="modal-box">
+  Dar de Baja a {{oneAnimal()?.name}}
+  <div class="modal-action">
+    <form method="dialog">
+      <!-- if there is a button in form, it will close the modal -->
+      <button class="btn">Cerrar</button>
+    </form>
+    <shared-btn (click)="deleteAnimal(oneAnimal()!)">
+     Dar de Baja 
+    </shared-btn>
+  </div>
+  
+</div>
+</form>
 </dialog>

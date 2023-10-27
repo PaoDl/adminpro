@@ -1,12 +1,22 @@
 <h2>{{specie() ? 'Editar' : 'Crear'}} Especie</h2>
-<form [formGroup]="speciesForm">
+<form [formGroup]="speciesForm" (ngSubmit)="onSave()">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
     <shared-input-text [labelTitle]="nameLabel" [control]="$any(speciesForm.get('name'))" />
     <shared-input-text [labelTitle]="scientific_nameLabel" [control]="$any(speciesForm.get('scientific_name'))" />
     <shared-input-text [labelTitle]="descriptionLabel" [control]="$any(speciesForm.get('description'))" />
-    <shared-input-text [labelTitle]="dietsLabel" [control]="$any(speciesForm.get('diets'))" />
-    <shared-input-text [labelTitle]="biomeLabel" [control]="$any(speciesForm.get('biome'))" />
-
+    <shared-input-text [labelTitle]="dietsLabel" [control]="$any(speciesForm.get('diet_id'))" />
+      <div justify-around items-center>Bioma
+        <select class=" select select-bordered w-full max-w-xs" formControlName="biome">
+          <option disabled selected>Seleccionar</option>
+          <option [value]="item.biome_id" *ngFor="let item of biome()">{{item.name}}</option>
+        </select>
+      </div>
+    <div class="form-control" formGroupName="diet_id">
+      <label class="cursor-pointer label">Dietas
+        <span class="label-text">Remember me</span>
+        <input type="checkbox" checked="checked" class="checkbox checkbox-secondary" />
+      </label>
+    </div>
   </div>
   <div class="mt-16 flex justify-around items-center">
     <div class="modal-action">
