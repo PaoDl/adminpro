@@ -122,8 +122,8 @@ export class AnimalsFormComponent {
   private loadSpecies() {
     this.speciesService.getSpecies()
       .subscribe({
-      next: ({reply})=>this.species.set(reply)
-    })
+        next: ({ reply }) => this.species.set(reply)
+      });
   }
 }
 

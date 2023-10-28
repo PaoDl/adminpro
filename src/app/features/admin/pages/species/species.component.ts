@@ -53,4 +53,37 @@ public species = signal<Species[]>([])
       }
     });
   }
+  public deleteSpecies(specie: Species) {
+    this.speciesService.deleteSpecies(specie.species_id)
+      .subscribe({
+      next: ({ statusCode, message, reply }) => {
+        
+          if (statusCode === 200) {
+            this.getSpecies();
+          this.toastService.show({
+          color: 'success',
+          message,
+          icon: faCircleXmark,
+          duration: 4000,
+        })
+        } else {
+          this.toastService.show({
+            color: 'error',
+            message,
+            icon: faCircleXmark,
+            duration: 4000,
+          })
+        }
+      },
+      error: (error) => {
+        this.toastService.show({
+          color: 'error',
+          message: error,
+          icon: faCircleXmark,
+          duration: 4000,
+        })
+      }
+    })
+      
+  }
 }
